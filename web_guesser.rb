@@ -3,7 +3,10 @@ require 'sinatra/reloader'
 
 
 SECRET_NUMBER = rand(100)
-number = SECRET_NUMBER
+
+def number
+  SECRET_NUMBER
+end
 get '/' do
   guess = params["guess"].to_i
   message = check_guess(guess)
@@ -11,7 +14,7 @@ get '/' do
 end
 
 def check_guess(guess)
-  difference = guess - SECRET_NUMBER
+  difference = guess - number
   case
     when guess == 0 then ""
     when guess > number && difference > 5 then "Way too high!"
